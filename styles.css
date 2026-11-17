@@ -1145,6 +1145,30 @@ select {
   box-shadow: 0 0 0 3px rgba(4, 120, 87, 0.14);
 }
 
+.form-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--brand-primary);
+  background: rgba(4, 120, 87, 0.08);
+  border: 1px solid rgba(4, 120, 87, 0.18);
+  padding: 6px 10px;
+  border-radius: var(--radius-xs);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.form-hint svg {
+  flex-shrink: 0;
+  stroke: var(--brand-primary);
+}
+
+.form-hint strong {
+  color: var(--brand-dark);
+  font-weight: 700;
+}
+
 .calc-preview {
   background: var(--bg-dark);
   color: #ffffff;

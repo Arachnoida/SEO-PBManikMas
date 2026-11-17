@@ -325,29 +325,91 @@
     const previewEl = document.getElementById('calc-wa-preview');
     const waBtn = document.getElementById('calc-wa-btn');
     const copyBtn = document.getElementById('calc-copy-btn');
+    const slotHintEl = document.getElementById('calc-slot-hint');
 
     if (!courtsEl || !hoursEl || !dateEl || !timeEl || !nameEl) return;
 
+    // Batasi tanggal minimal ke hari ini
+    const today = new Date();
+    const todayStr = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    dateEl.min = todayStr;
+
     const tomorrow = new Date(Date.now() + 86400000);
-    dateEl.value = tomorrow.toISOString().split('T')[0];
+    const tomorrowStr = `${tomorrow.getFullYear()}-${String(tomorrow.getMonth() + 1).padStart(2, '0')}-${String(tomorrow.getDate()).padStart(2, '0')}`;
+    dateEl.value = tomorrowStr;
 
     let calcTrackTimeout = null;
+
+    // Sinkronkan opsi jam mulai agar tidak melebihi jam tutup GOR (23.00 WIB)
+    function refreshStartTimeOptions() {
+      const hours = Math.max(1, Math.min(5, Number(hoursEl.value) || 2));
+      const maxStartHour = 23 - hours;
+      let currentVal = Number(timeEl.value) || 19;
+
+      timeEl.innerHTML = '';
+      for (let h = 7; h <= 22; h++) {
+        const opt = document.createElement('option');
+        opt.value = String(h);
+        const hourPad = String(h).padStart(2, '0');
+        const popularSuffix = h === 19 ? ' (Paling Populer)' : '';
+
+        if (h > maxStartHour) {
+          opt.disabled = true;
+          opt.textContent = `${hourPad}.00 WIB — Tutup (Max main s/d 23.00)`;
+        } else {
+          opt.textContent = `${hourPad}.00 WIB${popularSuffix}`;
+        }
+        timeEl.appendChild(opt);
+      }
+
+      if (currentVal > maxStartHour) {
+        currentVal = maxStartHour;
+      }
+      if (currentVal < 7) {
+        currentVal = 7;
+      }
+      timeEl.value = String(currentVal);
+    }
 
     function updateCalculator(logEvent = false) {
       const courts = Math.max(1, Math.min(4, Number(courtsEl.value) || 1));
       const hours = Math.max(1, Math.min(5, Number(hoursEl.value) || 2));
+      const maxStartHour = 23 - hours;
+
+      let startHour = Number(timeEl.value) || 19;
+      if (startHour > maxStartHour) {
+        startHour = maxStartHour;
+        timeEl.value = String(startHour);
+      }
+      const endHour = startHour + hours;
+
       const estimatedTotal = courts * hours * CONFIG.ratePerHour;
 
-      const dateFormatted = dateEl.value
-        ? new Date(`${dateEl.value}T00:00:00`).toLocaleDateString('id-ID', {
+      let dateFormatted = 'Menyusul';
+      if (dateEl.value) {
+        const parts = dateEl.value.split('-').map(Number);
+        if (parts.length === 3) {
+          const d = new Date(parts[0], parts[1] - 1, parts[2]);
+          dateFormatted = d.toLocaleDateString('id-ID', {
             weekday: 'long',
             day: 'numeric',
             month: 'long',
             year: 'numeric'
-          })
-        : 'Menyusul';
+          });
+        }
+      }
 
-      const timeSlot = timeEl.value.trim() || '19.00 - 21.00 WIB';
+      const startFormatted = `${String(startHour).padStart(2, '0')}.00`;
+      const endFormatted = `${String(endHour).padStart(2, '0')}.00 WIB`;
+      const timeSlotFull = `${startFormatted} – ${endFormatted}`;
+
+      if (slotHintEl) {
+        slotHintEl.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Selesai: <strong>${endFormatted}</strong> (Slot: ${timeSlotFull})</span>
+        `;
+      }
+
       const bookerName = nameEl.value.trim() || 'Pemain / Tim';
 
       if (totalEl) totalEl.textContent = formatRupiah(estimatedTotal);
@@ -359,8 +421,8 @@
         `Halo Admin ${CONFIG.gorName}, saya mau cek slot lapangan:`,
         `• Nama: ${bookerName}`,
         `• Tanggal: ${dateFormatted}`,
-        `• Jam Main: ${timeSlot}`,
-        `• Jumlah: ${courts} Lapangan (${hours} Jam)`,
+        `• Jam Main: ${timeSlotFull} (Durasi: ${hours} Jam)`,
+        `• Jumlah: ${courts} Lapangan`,
         `• Total Biaya: ${formatRupiah(estimatedTotal)} (Rp30.000/jam)`,
         '',
         'Apakah jadwal tersebut masih kosong, Admin? Terima kasih.'
@@ -377,13 +439,22 @@
           Telemetry.pushEvent('calculate_booking', {
             courts,
             hours,
+            slot: timeSlotFull,
             estimate_idr: estimatedTotal
           });
         }, 450);
       }
     }
 
-    [courtsEl, hoursEl, dateEl, timeEl, nameEl].forEach((input) => {
+    refreshStartTimeOptions();
+    updateCalculator(false);
+
+    hoursEl.addEventListener('change', () => {
+      refreshStartTimeOptions();
+      updateCalculator(true);
+    });
+
+    [courtsEl, dateEl, timeEl, nameEl].forEach((input) => {
       input.addEventListener('input', () => updateCalculator(true));
       input.addEventListener('change', () => updateCalculator(true));
     });
@@ -398,8 +469,6 @@
         showToast('Silakan salin teks pesan secara manual.');
       }
     });
-
-    updateCalculator(false);
   }
 
   /* ------------------------------------------------------------------------
