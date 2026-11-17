@@ -151,7 +151,7 @@
         "name": "Berapa harga sewa lapangan di GOR P. B. Manik Mas?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Harga sewa lapangan adalah Rp30.000 per jam (flat). Tarif ini berlaku sama untuk semua jam operasional (07.00–23.00 WIB) dari hari Senin hingga Minggu."
+          "text": "Harga sewa lapangan adalah Rp30.000 per jam (flat). Tarif ini berlaku sama untuk semua jam operasional (07.00–23.00 WITA) dari hari Senin hingga Minggu."
         }
       },
       {
@@ -306,7 +306,7 @@
             <span class="hero__QuickCard-label">Tarif Flat Semua Jam</span>
             <div class="hero__QuickCard-price">Rp30.000 <span>/ jam</span></div>
             <p class="hero__QuickCard-meta">
-              Berlaku Senin – Minggu (07.00 – 23.00 WIB). Harga sama untuk pagi, siang, maupun malam.
+              Berlaku Senin – Minggu (07.00 – 23.00 WITA). Harga sama untuk pagi, siang, maupun malam.
             </p>
             <a class="hero__QuickCard-link" href="#kalkulator">
               <span>Hitung Biaya di Kalkulator</span>
@@ -560,7 +560,7 @@
             <div class="bwf-tile">
               <span class="bwf-tile__tag">Jam Buka &amp; Tarif</span>
               <strong class="bwf-tile__val">Rp30.000 / Jam</strong>
-              <p class="bwf-tile__desc">Buka tiap hari pukul 07.00–23.00 WIB dengan satu tarif flat.</p>
+              <p class="bwf-tile__desc">Buka tiap hari pukul 07.00–23.00 WITA dengan satu tarif flat.</p>
             </div>
           </div>
         </div>
@@ -588,7 +588,7 @@
             <span class="geo-badge">Berlaku Semua Hari &amp; Jam</span>
             <div class="flat-rate-banner__price">Rp30.000 <small>/ jam / lapangan</small></div>
             <p style="color:var(--text-on-dark-muted); font-size:0.94rem;">
-              Senin sampai Minggu (07.00 – 23.00 WIB). Bebas pilih jam pagi, siang, sore, atau malam dengan harga yang
+              Senin sampai Minggu (07.00 – 23.00 WITA). Bebas pilih jam pagi, siang, sore, atau malam dengan harga yang
               sama.
             </p>
           </div>
@@ -657,6 +657,9 @@
                   <option value="3">3 Jam</option>
                   <option value="4">4 Jam</option>
                   <option value="5">5 Jam</option>
+                  <option value="6">6 Jam</option>
+                  <option value="7">7 Jam</option>
+                  <option value="8">8 Jam</option>
                 </select>
               </div>
 
@@ -668,26 +671,26 @@
               <div class="form-group">
                 <label for="calc-time">Jam Mulai Main</label>
                 <select id="calc-time" class="form-control" aria-describedby="calc-slot-hint">
-                  <option value="7">07.00 WIB</option>
-                  <option value="8">08.00 WIB</option>
-                  <option value="9">09.00 WIB</option>
-                  <option value="10">10.00 WIB</option>
-                  <option value="11">11.00 WIB</option>
-                  <option value="12">12.00 WIB</option>
-                  <option value="13">13.00 WIB</option>
-                  <option value="14">14.00 WIB</option>
-                  <option value="15">15.00 WIB</option>
-                  <option value="16">16.00 WIB</option>
-                  <option value="17">17.00 WIB</option>
-                  <option value="18">18.00 WIB</option>
-                  <option value="19" selected>19.00 WIB (Paling Populer)</option>
-                  <option value="20">20.00 WIB</option>
-                  <option value="21">21.00 WIB</option>
-                  <option value="22">22.00 WIB</option>
+                  <option value="7">07.00 WITA</option>
+                  <option value="8">08.00 WITA</option>
+                  <option value="9">09.00 WITA</option>
+                  <option value="10">10.00 WITA</option>
+                  <option value="11">11.00 WITA</option>
+                  <option value="12">12.00 WITA</option>
+                  <option value="13">13.00 WITA</option>
+                  <option value="14">14.00 WITA</option>
+                  <option value="15">15.00 WITA</option>
+                  <option value="16">16.00 WITA</option>
+                  <option value="17">17.00 WITA</option>
+                  <option value="18">18.00 WITA</option>
+                  <option value="19" selected>19.00 WITA</option>
+                  <option value="20">20.00 WITA</option>
+                  <option value="21">21.00 WITA</option>
+                  <option value="22">22.00 WITA</option>
                 </select>
                 <div id="calc-slot-hint" class="form-hint" aria-live="polite">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  <span>Selesai: <strong>21.00 WIB</strong> (Slot: 19.00 – 21.00 WIB)</span>
+                  <span>Selesai: <strong>21.00 WITA</strong> (Slot: 19.00 – 21.00 WITA)</span>
                 </div>
               </div>
 
@@ -929,12 +932,12 @@
                 <tbody>
                   <tr>
                     <td>Senin – Jumat</td>
-                    <td>07.00 – 23.00 WIB</td>
+                    <td>07.00 – 23.00 WITA</td>
                     <td>Rp30.000 / jam</td>
                   </tr>
                   <tr>
                     <td>Sabtu, Minggu &amp; Libur</td>
-                    <td>07.00 – 23.00 WIB</td>
+                    <td>07.00 – 23.00 WITA</td>
                     <td>Rp30.000 / jam</td>
                   </tr>
                 </tbody>
@@ -987,7 +990,7 @@
               </button>
               <div id="faq-panel-1" class="faq-panel">
                 <p>Harga sewa lapangan adalah Rp30.000 per jam (flat). Tarif ini berlaku sama untuk semua jam
-                  operasional (07.00–23.00 WIB) dari hari Senin hingga Minggu.</p>
+                  operasional (07.00–23.00 WITA) dari hari Senin hingga Minggu.</p>
               </div>
             </div>
 

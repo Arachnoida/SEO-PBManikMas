@@ -340,9 +340,9 @@
 
     let calcTrackTimeout = null;
 
-    // Sinkronkan opsi jam mulai agar tidak melebihi jam tutup GOR (23.00 WIB)
+    // Sinkronkan opsi jam mulai agar tidak melebihi jam tutup GOR (23.00 WITA)
     function refreshStartTimeOptions() {
-      const hours = Math.max(1, Math.min(5, Number(hoursEl.value) || 2));
+      const hours = Math.max(1, Math.min(8, Number(hoursEl.value) || 2));
       const maxStartHour = 23 - hours;
       let currentVal = Number(timeEl.value) || 19;
 
@@ -351,13 +351,12 @@
         const opt = document.createElement('option');
         opt.value = String(h);
         const hourPad = String(h).padStart(2, '0');
-        const popularSuffix = h === 19 ? ' (Paling Populer)' : '';
 
         if (h > maxStartHour) {
           opt.disabled = true;
-          opt.textContent = `${hourPad}.00 WIB — Tutup (Max main s/d 23.00)`;
+          opt.textContent = `${hourPad}.00 WITA — Tutup (Max main s/d 23.00 WITA)`;
         } else {
-          opt.textContent = `${hourPad}.00 WIB${popularSuffix}`;
+          opt.textContent = `${hourPad}.00 WITA`;
         }
         timeEl.appendChild(opt);
       }
@@ -373,7 +372,7 @@
 
     function updateCalculator(logEvent = false) {
       const courts = Math.max(1, Math.min(4, Number(courtsEl.value) || 1));
-      const hours = Math.max(1, Math.min(5, Number(hoursEl.value) || 2));
+      const hours = Math.max(1, Math.min(8, Number(hoursEl.value) || 2));
       const maxStartHour = 23 - hours;
 
       let startHour = Number(timeEl.value) || 19;
@@ -400,7 +399,7 @@
       }
 
       const startFormatted = `${String(startHour).padStart(2, '0')}.00`;
-      const endFormatted = `${String(endHour).padStart(2, '0')}.00 WIB`;
+      const endFormatted = `${String(endHour).padStart(2, '0')}.00 WITA`;
       const timeSlotFull = `${startFormatted} – ${endFormatted}`;
 
       if (slotHintEl) {
