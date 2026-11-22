@@ -15,4 +15,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://gor-pb-manik-mas.vercel.app/sitemap.xml
+Sitemap: https://kinkareem.github.io/SEO-PBManikMas/sitemap.xml
