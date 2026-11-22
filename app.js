@@ -9,9 +9,9 @@
   const CONFIG = {
     waNumber: '62895701609699',
     gorName: 'GOR Bulu Tangkis P. B. Manik Mas',
-    address: 'Jl. Raya Manik Mas No. 88, Kel. Sukamaju, Kec. Bojongloa, Kota Bandung, Jawa Barat 40234',
-    mapsUrl: 'https://maps.google.com/?q=-6.9385,107.6042',
-    siteUrl: 'https://gor-pb-manik-mas.vercel.app/',
+    address: 'Jl. Tulip Gg. III No. 2, Sumerta Kaja, Kec. Denpasar Timur, Kota Denpasar, Bali 80236',
+    mapsUrl: 'https://maps.app.goo.gl/f3XtGzDtJFnp3AXQ9',
+    siteUrl: 'https://kinkareem.github.io/SEO-PBManikMas/',
     ratePerHour: 30000,
     storageKey: 'pbmanikmas_telemetry_v1',
     sessionKey: 'pbmanikmas_session_active'
@@ -78,8 +78,12 @@
       }
     }
 
+    // Event demo/simulasi tidak dikirim ke GA4 asli agar data tidak tercemar.
+    // page_view asli sudah dikirim otomatis oleh gtag('config').
+    const GA_SKIP_EVENTS = new Set(['page_view', 'demo_reset']);
+
     function pushEvent(eventName, params = {}) {
-      if (typeof window.gtag === 'function') {
+      if (typeof window.gtag === 'function' && !GA_SKIP_EVENTS.has(eventName)) {
         try {
           window.gtag('event', eventName, params);
         } catch {
@@ -371,7 +375,7 @@
     }
 
     function updateCalculator(logEvent = false) {
-      const courts = Math.max(1, Math.min(4, Number(courtsEl.value) || 1));
+      const courts = Math.max(1, Math.min(2, Number(courtsEl.value) || 1));
       const hours = Math.max(1, Math.min(8, Number(hoursEl.value) || 2));
       const maxStartHour = 23 - hours;
 

@@ -2,22 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://gor-pb-manik-mas.vercel.app/</loc>
-    <lastmod>2026-11-16</lastmod>
+    <loc>https://kinkareem.github.io/SEO-PBManikMas/</loc>
+    <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?auto=format&amp;fit=crop&amp;w=1600&amp;q=80</image:loc>
-      <image:title>GOR Bulu Tangkis P. B. Manik Mas - Lapangan Karpet Vinyl Indoor</image:title>
-      <image:caption>Pemain melakukan jump smash di lapangan bulu tangkis indoor karpet vinyl P. B. Manik Mas</image:caption>
-    </image:image>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1780233689493-63732bb9cfc1?auto=format&amp;fit=crop&amp;w=1400&amp;q=85</image:loc>
-      <image:title>Arena Indoor &amp; Pencahayaan LED Anti-Silau</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://images.unsplash.com/photo-1626721105368-a69248e93b32?auto=format&amp;fit=crop&amp;w=1400&amp;q=85</image:loc>
-      <image:title>Net Standar Turnamen BWF GOR P. B. Manik Mas</image:title>
+      <image:loc>https://kinkareem.github.io/SEO-PBManikMas/image/og-image.jpg</image:loc>
+      <image:title>GOR Bulu Tangkis P. B. Manik Mas - Lapangan Karpet Vinyl Indoor Denpasar</image:title>
     </image:image>
   </url>
 </urlset>
