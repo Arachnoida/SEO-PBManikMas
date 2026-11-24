@@ -79,7 +79,7 @@
     }
 
     // Event demo/simulasi tidak dikirim ke GA4 asli agar data tidak tercemar.
-    // page_view asli sudah dikirim otomatis oleh gtag('config').
+    // page_view asli dikirim otomatis oleh Google Analytics tag melalui GTM.
     const GA_SKIP_EVENTS = new Set(['page_view', 'demo_reset']);
 
     function pushEvent(eventName, params = {}) {
